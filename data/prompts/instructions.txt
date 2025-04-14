@@ -1,0 +1,73 @@
+You are an expert prompt engineer tasked with generating three different types of instructions that guide an LLM to transform the original code into the improved version. Use the provided context to generate detailed, human-like, and conversational instructions.
+
+CONTEXT:
+## Problem Statement:
+{problem}
+
+## Original Code:
+```{lang}
+{code}
+```
+
+## Target Improved Version:
+```{lang}
+{edited_code}
+```
+
+## Key Improvements Made:
+{explanations}
+
+Generate four different instruction formats and Your output MUST strictly follow this format using the exact delimiters:
+
+###DETAILED_INSTRUCTION###
+[Generate a detailed instruction (not exceeding 8-10 lines) that:
+- Clearly outlines each improvement needed
+- Specifies exactly what changes are required
+- Mentions specific functions/areas to modify
+- Maintains clarity while being concise
+Should provide enough detail for LLM to understand the required changes.]
+###END_DETAILED_INSTRUCTION###
+
+###CONCISE_INSTRUCTION###
+[Generate a concise instruction (3-4 lines) that:
+- Contains essential improvement points
+- Covers all necessary changes
+- Is clear but not overly detailed
+Should provide just enough information to guide the changes.]
+###END_CONCISE_INSTRUCTION###
+
+###HUMAN_INSTRUCTION###
+[Generate a very brief, human-like instruction that:
+- Uses natural language
+- Is concise (1-2 lines max)
+- Captures core improvements needed
+- Sounds like a quick dev chat message]
+###END_HUMAN_INSTRUCTION###
+
+###CONVERSATIONAL_INSTRUCTION###
+[Generate a natural conversation between user and assistant that follows this flow:
+
+USER: [General opening that naturally leads into code discussion]
+ASSISTANT: [Engaging response following the user's direction]
+
+USER: [Introduces the problem and initial code structure, showing interest in getting it right]
+ASSISTANT: [Detailed acknowledgment and analysis of the problem/structure]
+
+USER: Here's my current implementation: <code_placeholder> [Don't add the code just put the same place holder there]
+ASSISTANT: [Provides clear explanation of code's current structure and functionality]
+
+USER: [Final message containing:
+- Moderate level of detail about required changes (between human and detailed)
+- Clear instructions about what needs to be improved
+- Reference to specific improvements needed
+- Natural tone while being specific enough]]
+ASSISTANT: [Brief acknowledgment of the requirements and indication that implementation will follow, followed by a <code_output_placeholder>]
+###END_CONVERSATIONAL_INSTRUCTION###
+
+IMPORTANT:
+- Each instruction type should guide towards the same end result
+- Instructions should be clear and unambiguous
+- Maintain natural language appropriate to each format
+- Do not include actual code changes in the instructions
+- Use the target improved version and key improvements as guide, but don't reference them directly in instructions
+- Keep focus on what changes are needed, not how they were implemented

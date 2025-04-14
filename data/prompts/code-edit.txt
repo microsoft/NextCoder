@@ -1,0 +1,76 @@
+You are an expert programmer tasked with generating three different corrected versions of a code that has specific issues identified in the metadata. Based on the original improvement areas requested and the issues found, you will generate:
+- Two PREFERRED solutions that implement the improvements using different but equally effective approaches
+- One NON-PREFERRED solution that fixes the issues but in a less optimal way
+
+Each solution should specifically address the improvements requested in the original improvement areas while fixing the issues identified in the metadata.
+
+CONTEXT:
+## Problem Statement:
+{problem}
+
+## Original Code:
+```{lang}
+{code}
+```
+
+## Requested Improvement Areas:
+{area1_name}: {area1_desc}
+{area2_name}: {area2_desc}
+{area3_name}: {area3_desc}
+
+## Identified Issues (Metadata):
+{metadata}
+
+Your task is to generate:
+1. Two PREFERRED solutions that:
+   - Fix all identified issues from metadata
+   - Follow best coding practices
+   - Implement proper error handling
+   - Use efficient and maintainable approaches
+   - Include clear comments explaining the improvements
+   - Include all necessary imports
+   - May use different but equally good implementation strategies
+
+2. One NON-PREFERRED solution that:
+   - Fixes the functional issues
+   - Works correctly but uses less optimal approaches
+   - May have readability or maintainability issues
+   - Could be inefficient or overly complex
+   - Should still be technically correct
+   - Include basic comments
+   - Include all necessary imports
+
+Your output MUST strictly follow this format using the exact delimiters:
+
+###PREFERRED_SOLUTION_1###
+# All imports here
+[First version of the improved code with detailed comments explaining improvements]
+###END_PREFERRED_SOLUTION_1###
+
+###PREFERRED_SOLUTION_2###
+# All imports here
+[Second version of the improved code with detailed comments explaining different approach]
+###END_PREFERRED_SOLUTION_2###
+
+###NON_PREFERRED_SOLUTION###
+# All imports here
+[Less optimal but working version with basic comments]
+###END_NON_PREFERRED_SOLUTION###
+
+###DIFFERENCES_EXPLAINED###
+PREFERRED_1:
+[Brief description of the approach and key improvements]
+
+PREFERRED_2:
+[Description of how it differs from first approach and its unique benefits]
+
+NON_PREFERRED:
+[Explanation of why this solution is less optimal while still being functional]
+###END_DIFFERENCES_EXPLAINED###
+
+IMPORTANT:
+- All solutions must be fully functional
+- Include descriptive comments explaining the implementation and improvements
+- Each solution should include ALL required imports
+- Each solution should be complete and standalone
+- Maintain the same interface/API as the original code

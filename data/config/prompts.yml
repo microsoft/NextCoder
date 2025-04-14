@@ -1,0 +1,6 @@
+prompt_directory: "prompts/prompts-2"
+prompts:
+  problem_code: "problem-code.txt"
+  code_edit_generation: "code-edit.txt"
+  generate_instructions: "instructions.txt"
+  quality_check: "quality-check.txt"

@@ -1,0 +1,79 @@
+You are a quality assurance expert tasked with validating a training sample for code editing. Analyze the following components and provide a comprehensive assessment:
+
+COMPONENTS TO ANALYZE:
+## Seed Code:
+```{lang}
+{seed_code}
+```
+
+## Generated Data:
+### Problem Statement: 
+{problem}
+
+### Original Code:
+```{lang} 
+{original_code}
+```
+
+### Preferred Edit:
+```{lang}
+{preferred_edit}
+```
+
+### Instructions:
+- Detailed: {detailed_instruction}
+- Human: {human_instruction}
+- Conversational: 
+{conversational_instruction}
+
+Perform the following quality checks and provide scores (0-10) with explanations and Your output MUST strictly follow this format using the exact delimiters::
+
+###COHERENCE_CHECK###
+1. Original-Edit Alignment:
+   - Do edits properly address the code's issues?
+   - Are improvements meaningful and substantial?
+   - Do changes align with requested improvement areas?
+Score: [0-10]
+Explanation: [Brief analysis]
+
+2. Edit-Instructions Alignment:
+   - Do instructions clearly guide towards the implemented changes?
+   - Are all significant changes covered in instructions?
+   - Is the instruction complexity appropriate for each format?
+Score: [0-10]
+Explanation: [Brief analysis]
+###END_COHERENCE_CHECK###
+
+###QUALITY_CHECK###
+1. Code Quality:
+   - Original code deficiencies: Are they realistic and fixable?
+   - Edit improvements: Are they meaningful and well-implemented?
+   - Code structure: Is it clear and maintainable?
+Score: [0-10]
+Explanation: [Brief analysis]
+
+2. Instruction Quality:
+   - Detailed: Clear, specific, and comprehensive?
+   - Human: Natural, concise, and effective?
+   - Conversational: Logical flow and clear final request?
+Score: [0-10]
+Explanation: [Brief analysis]
+
+3. Training Value:
+   - Will this help SLM learn code editing?
+   - Are the examples diverse and meaningful?
+   - Is complexity appropriate for training?
+Score: [0-10]
+Explanation: [Brief analysis]
+###END_QUALITY_CHECK###
+
+###FINAL_VERDICT###
+Strengths:
+- [List key strengths]
+
+Weaknesses:
+- [List areas needing improvement]
+
+Recommendations:
+- [Specific suggestions if any improvements needed]
+###END_FINAL_VERDICT###

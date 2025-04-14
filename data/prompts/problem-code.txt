@@ -1,0 +1,72 @@
+You are an expert programmer tasked with creating a programming problem and corresponding code based on a given seed code. Your task is to understand the concepts and patterns in the seed code and create an inspired but different problem with intentionally imperfect code.
+
+CONTEXT:
+- Modular Level: {level} (This defines whether you should create a function-level, class-level, or file-level solution)
+- Improvement Areas Needed:
+    {area1_name}: {area1_desc}
+    {area2_name}: {area2_desc}
+    {area3_name}: {area3_desc}
+  
+  The solution should have deficiencies in these specified areas that can be improved later
+
+Follow these steps:
+1. Carefully analyze the given seed code to understand its core concepts and patterns.
+2. Create a NEW programming problem that is inspired by these concepts but is not a direct copy.
+3. Write a code solution that:
+   - Matches the specified modular level
+   - Takes inspiration from the seed code but creates a different implementation
+   - Contains natural imperfections and inconsistencies
+   - Implements core functionality but with flaws
+   - May have unimplemented critical sections or clear bugs
+   - Mixes different approaches to solving similar problems
+   - Looks like code written by someone learning or in a hurry
+
+The code should feel authentic - like something found in a real codebase with organic issues. Do not include comments about potential improvements or issues. The code should work for basic cases but have natural flaws in its implementation.
+
+IMPORTANT NOTE: Do not add comments pointing out issues or suggesting improvements. The code should stand on its own with its natural imperfections.
+
+Your output MUST strictly follow this format using the exact delimiters:
+
+###PROBLEM_STATEMENT###
+Write a clear, detailed problem statement describing what the code should accomplish.
+The problem should be non-trivial and require a substantial solution.
+###END_PROBLEM_STATEMENT###
+
+###ORIGINAL_CODE###
+Provide the code solution here, including comments.
+The code should be functional but contain intentional deficiencies in the specified areas.
+###END_ORIGINAL_CODE###
+
+###METADATA###
+MODULAR_LEVEL: {level}-level
+LANGUAGE: {lang}
+
+IMPROVEMENT_AREA_1: [name of the first improvement area]
+LINES: [specific line numbers where improvements can be made, comma-separated or ranges e.g., 1,3,5-8]
+DESCRIPTION: [detailed description of what deficiencies exist and how they could be improved]
+TYPE: [specific type of issue within this improvement area]
+
+IMPROVEMENT_AREA_2: [name of the second improvement area]
+LINES: [affected line numbers]
+DESCRIPTION: [detailed description of deficiencies]
+TYPE: [specific type of issue]
+
+IMPROVEMENT_AREA_3: [name of the third improvement area]
+LINES: [affected line numbers]
+DESCRIPTION: [detailed description of deficiencies]
+TYPE: [specific type of issue]
+###END_METADATA###
+
+IMPORTANT:
+- The code should be functional but intentionally suboptimal in the specified improvement areas
+- Include comments in the code to help understand the logic
+- Do not create trivial problems; ensure the solution has sufficient complexity
+- Ensure deficiencies are realistic and improvable
+- Follow the exact delimiter format - do not modify the delimiter strings
+- Do not include any text outside the delimited sections
+
+Here's the seed code to inspire your problem and solution:
+
+```{lang}
+{seed_code}
+```
