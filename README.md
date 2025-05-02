@@ -1,13 +1,18 @@
 # NextCoder
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/microsoft">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://arxiv.org/#">Paper</a> 
+        🤗 <a href="https://huggingface.co/microsoft">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://arxiv.org/abs/2503.03656">Paper</a> 
 </p>
 
-## Assets (this is temporary section and will be removed)
-- Only new synthetic dataset
-- Models and usage
-- Training reciepe
+## Introduction
+This repository hosts the official code and data artifact for the paper [NextCoder: Robust Learning of Diverse Code Edits
+](https://arxiv.org/abs/2503.03656)
+
+The work is the development of code-editing LLMs, synthetic data generation pipeline and a novel finetuning methodology.
+
+## Repository Structure
+- [data](data/): contains the scripts and files required to generate synthetic dataset for code-editing as per the pipeline proposed in the paper
+- [train](src/train/) contains the scripts and files for finetuning with SeleKT, LoRA and usual SFT.
 
 ## Model Usage
 ```python
