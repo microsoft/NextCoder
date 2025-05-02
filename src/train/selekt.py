@@ -160,9 +160,9 @@ def selekt(base_path, save_path, alpha, rescaling, rank, trainer):
                     non_blocking=True
                 )
                 delta = param - base_param
-                print("+"*100)
-                print(torch.sum(delta))
-                print("+"*100)
+                # print("+"*100)
+                # print(torch.sum(delta))
+                # print("+"*100)
                 mask = torch.zeros_like(delta)
                 _, indices = torch.topk(delta.abs().view(-1), int(alpha * delta.numel()))
                 mask.view(-1)[indices] = 1
@@ -285,8 +285,7 @@ def train(args):
         gradient_checkpointing_kwargs={"use_reentrant": False},
         deepspeed=args.deepspeed,
         dataset_num_proc=80,
-        # run_name=args.run_name,
-        # use_liger=args.use_liger,
+        run_name=args.run_name,
         )
 
     rank = int(os.environ.get("RANK", "0"))
