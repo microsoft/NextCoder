@@ -64,7 +64,7 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 | QwenCoder-2.5-32B | **90.2** | 61.0 | 72.9 | 16.4 |
 | QwenCoder-2.5-32B-LoRA | 82.3 | 52.4 | 60.2 | 6.7 |
 | QwenCoder-2.5-32B-SFT | 81.7 | 49.5 | 66.9 | 8.4 |
-| **NextCoder-32B** | 88.9 | **62.4** | **74.7** | **21.9** |
+| **NextCoder-32B** | 88.9 | **62.4** | **74.7** | **23.6** |
 
 *Comparison of base QwenCoder-2.5 models of different sizes and their SELEKT-enhanced versions across three code editing benchmarks.*
 
