@@ -54,7 +54,7 @@ generated_ids = [
 response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 ```
 
-## Evaluation and Performanc
+## Evaluation and Performance
 
 | Models | HUMANEVALEDIT | CANITEDIT | AIDER | POLYGLOT |
 |--------|---------------|-----------|-------|----------|
