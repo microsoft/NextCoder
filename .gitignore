@@ -2,3 +2,4 @@ data/nextcoder-synthetic.jsonl
 notebook.ipynb
 git-credential-manager
 models
+*.parquet

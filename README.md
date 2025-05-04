@@ -1,14 +1,14 @@
 # NextCoder
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/microsoft">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://arxiv.org/abs/2503.03656">Paper</a> 
+        🤗 <a href="https://huggingface.co/collections/microsoft/nextcoder-6815ee6bfcf4e42f20d45028">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://arxiv.org/abs/2503.03656">Arxiv</a> 
 </p>
 
 ## Introduction
 This repository hosts the official code and data artifact for the paper [NextCoder: Robust Learning of Diverse Code Edits
 ](https://arxiv.org/abs/2503.03656)
 
-The work is the development of code-editing LLMs, synthetic data generation pipeline and a novel finetuning methodology.
+The work is the development of code-editing LLMs, synthetic data generation pipeline and a novel finetuning methodology called **Selective Knowledge Transfer (SeleKT)**.
 
 ## Repository Structure
 - [data](data/): contains the scripts and files required to generate synthetic dataset for code-editing as per the pipeline proposed in the paper
@@ -18,7 +18,7 @@ The work is the development of code-editing LLMs, synthetic data generation pipe
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_name = "Microsoft/NextCoder-7B"
+model_name = "microsoft/NextCoder-7B"
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
@@ -56,6 +56,9 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
 ## Evaluation and Performanc
 
+![](assets/aider-polyglot.png)
+*Comparison of NextCoder-32B models with other models*
+
 | Models | HUMANEVALEDIT | CANITEDIT | AIDER | POLYGLOT |
 |--------|---------------|-----------|-------|----------|
 | QwenCoder-2.5-3B | 73.2 | 37.1 | 36.8 | - |
@@ -72,6 +75,10 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 | **NextCoder-32B** | 88.9 | **62.4** | **74.7** | **23.6** |
 
 *Comparison of base QwenCoder-2.5 models of different sizes and their SELEKT-enhanced versions across three code editing benchmarks.*
+
+<img src="assets/spider-plot.png" width=400></img>
+
+**A detailed evaluation and ablations can be found in our paper**
 
 ## Contributing
 
