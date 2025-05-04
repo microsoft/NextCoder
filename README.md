@@ -54,7 +54,7 @@ generated_ids = [
 response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 ```
 
-## Evaluation and Performanc
+## Evaluation and Performance
 
 ![](assets/aider-polyglot.png)
 *Comparison of NextCoder-32B models with other models*
