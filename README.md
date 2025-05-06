@@ -78,6 +78,17 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
 <img src="assets/spider-plot.png" width=400></img>
 
+
+| Model | MMLU | GSM8K | HumanEval+ | MBPP+ |
+|-------|------|-------|------------|-------|
+| Qwen2.5-Coder-7B-Instruct | 53.0 | 83.40 | 85.4 | 72.5 |
+| NextCoder-7B | 54.5 | 81.65 | 84.8 | 72.0 |
+| Qwen2.5-Coder-32B-Instruct | 71.9 | 93.71 | 87.2 | 76.7 |
+| NextCoder-32B | 72.7 | 92.65 | 85.9 | 76.4 |
+
+*Generalization properties kept across different benchmarks among base and nextcoder versions*
+
+
 **A detailed evaluation and ablations can be found in our paper**
 
 ## Contributing
