@@ -5,6 +5,7 @@
 - `config` contains the yaml file to map prompts to their corresponding location
 - `utils.py` contains the helper code to extract and parse data from LLM responses
 - `data_pipeline.py` contains the main source code for generating synthetic data according to the pipeline explained in our paper.
+- `commitpackft_subset.csv` file contains the `repo` and `commit` fields of the samples used in training, this can be used to map to the original commitpackft for extracting respective samples
 
 # Usage
 - Make sure the proper packages are installed via the `environment.yaml` file provided at root folder
