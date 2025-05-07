@@ -9,6 +9,17 @@
 - `sft.py` contains the code for training model with Full Supervised Finetuning
   
 ## Usgae
+### Preparing the dataset
+- Download the both Instruction and Conversational variant dataset from huggingface
+  - [microsoft/NextCoderDataset](https://huggingface.co/datasets/microsoft/NextCoderDataset)
+  - [microsoft/NextCoderDataset-Conversational](https://huggingface.co/datasets/microsoft/NextCoderDataset-Conversational)
+
+- Run the `data_prep.py` script with the corresponding data path for instruction-variant, this will fetch the commitpackft subset and create a complete dataset for instruction-tuning
+  ```bash
+  python data_prep.py --commitpackft_mapping ../data/commitpackft_subset.csv --save_dir .
+  ```
+  This will save the final instruction dataset as `instruction_dataset` which will be used in trainig for stage-1
+
 ### Training with SFT
 - modify or replace the `general_acc.yaml` file as per the desired system configuration
 - set the `zero_optimization-stage` to `3` and `overlap_comm` to `false` in `ds_config` for better memory optimizations
@@ -36,7 +47,21 @@
       --debug True \
   ```
   Update the above command as per the model
-- To train on conversation data by only applying loss on the response, uncomment the lines 175, 176 and 185 and run the same command with proper dataset path
+- To train on conversation data by only applying loss on the response, uncomment the lines 175, 176 and 185 and run the same command with proper conversational dataset path
+  ```python
+    response_template = "#RESPONSE\n"
+    collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
+
+    # Initialize trainer
+    trainer = SFTTrainer(
+        model=model,
+        processing_class=tokenizer,
+        train_dataset=dataset,
+        args=training_config,
+        callbacks=[Callback(flush_steps=1)],
+        data_collator=collator, # pass the collator in the trainer
+    )
+  ```
 
 ### Training with LoRA
 - modify or replace the `general_acc.yaml` file as per the desired system configuration
@@ -101,4 +126,19 @@
       --alpha "Enter value for desired alpha parameter for SeleKT" \
   ```
   Update the above command as per the model
-- To train on conversation data by only applying loss on the response, uncomment the lines 291, 292 and 301 and run the same command with proper dataset path
+- To train on conversation data by only applying loss on the response, uncomment the lines 291, 292 and 301 and run the same command with proper conversational dataset path
+  ```python
+    ```python
+    response_template = "#RESPONSE\n"
+    collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
+
+    # Initialize trainer
+    trainer = SFTTrainer(
+        model=model,
+        processing_class=tokenizer,
+        train_dataset=dataset,
+        args=training_config,
+        callbacks=[Callback(flush_steps=1)],
+        data_collator=collator, # pass the collator in the trainer
+    )
+    ```
