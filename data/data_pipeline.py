@@ -64,19 +64,7 @@ def load_seed_dataset(language, num_samples, split, path='', start_idx=0, revers
 
 def initialize_openai():
     scope = "api://trapi/.default"
-    credential = get_bearer_token_provider(ChainedTokenCredential(
-    AzureCliCredential(),
-    DefaultAzureCredential(
-        exclude_cli_credential=True,
-        exclude_environment_credential=True,
-        exclude_shared_token_cache_credential=True,
-        exclude_developer_cli_credential=True,
-        exclude_powershell_credential=True,
-        exclude_interactive_browser_credential=True,
-        exclude_visual_studio_code_credentials=True,
-        managed_identity_client_id=os.environ.get("DEFAULT_IDENTITY_CLIENT_ID"),
-    )
-    ),scope)
+    credential = get_bearer_token_provider(AzureCliCredential(), scope)
     api_version = '2024-10-21'
     model_name = 'gpt-4o'
     model_version = '2024-05-13'
