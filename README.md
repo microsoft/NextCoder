@@ -59,12 +59,16 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 ![](assets/aider-polyglot.png)
 *Comparison of NextCoder-32B models with other models*
 
-| Models | HUMANEVALEDIT | CANITEDIT | AIDER | POLYGLOT |
+| Models | HUMANEVALFIX | CANITEDIT | AIDER | POLYGLOT |
 |--------|---------------|-----------|-------|----------|
 | QwenCoder-2.5-3B | 73.2 | 37.1 | 36.8 | - |
 | QwenCoder-2.5-3B-LoRA | 64.6 | 36.2 | 35.8 | - |
 | QwenCoder-2.5-3B-SFT | 76.2 | 32.4 | 30.1 | - |
 | **NextCoder-3B** | 75.6 | 42.4 | 37.6 | - |
+| QwenCoder-2.5-7B | 73.8 | 48.1 | 59.4 | - |
+| QwenCoder-2.5-7B-LoRA | 70.7 | 44.3 | 40.6 | - |
+| QwenCoder-2.5-7B-SFT | 70.1 | 36.7 | 48.9 | - |
+| **NextCoder-7B** | 81.1 | 50.5 | 65.7 | - |
 | QwenCoder-2.5-14B | 87.8 | 58.1 | 66.9 | 9.3 |
 | QwenCoder-2.5-14B-LoRA | 78.0 | 50.9 | 66.2 | 5.3 |
 | QwenCoder-2.5-14B-SFT | 79.9 | 42.4 | 36.8 | 3.1 |
