@@ -70,10 +70,11 @@ def parse_args():
                       help="Whether to use bf16 mixed precision training")
     parser.add_argument("--run_name", type=str, default=None)
     parser.add_argument("--use_liger", type=bool, default=False)
-    parser.add_argument("--debug", type=bool, default=False)
     parser.add_argument("--packing", type=bool, default=True,
                       help="Whether to use packing for training")
-    parser.add_argument("--alpha", type=float, default=0.05,)
+    parser.add_argument("--alpha", type=float, default=0.05, help="Alpha value for SeleKT")
+    parser.add_argument("--is_conversational_training", action='store_true',
+                      help="Whether to use conversational training format")
     
     args, _ = parser.parse_known_args()
     return args

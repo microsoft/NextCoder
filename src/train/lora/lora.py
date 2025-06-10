@@ -66,9 +66,10 @@ def parse_args():
                       help="Whether to use bf16 mixed precision training")
     parser.add_argument("--run_name", type=str, default=None)
     parser.add_argument("--use_liger", type=bool, default=False)
-    parser.add_argument("--debug", type=bool, default=False)
     parser.add_argument("--packing", type=bool, default=True,
                       help="Whether to use packing for training")
+    parser.add_argument("--is_conversational_training", action='store_true',
+                      help="Whether to use conversational training format")
     
     args, _ = parser.parse_known_args()
     return args
@@ -151,12 +152,13 @@ def main():
         output_dir=args.output_dir,
         report_to="none",
         gradient_checkpointing=args.gradient_checkpointing,
-        gradient_checkpointing_kwargs={"use_reentrant": False},
+        gradient_checkpointing_kwargs={"use_reentrant": True},
         deepspeed=args.deepspeed,
         dataset_num_proc=80,
         run_name=args.run_name,
         use_liger=args.use_liger,
         )
+    
     lora_config = LoraConfig(
         r=64,
         # target_modules= ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
@@ -175,6 +177,11 @@ def main():
     
     dataset = setup_training_data(args, local_rank, tokenizer)
 
+    collator = None
+    if args.is_conversational_training:
+      response_template = "#RESPONSE\n"
+      collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
+
     trainer = SFTTrainer(
         model=model,
         processing_class=tokenizer,
@@ -182,6 +189,7 @@ def main():
         args=training_config,
         peft_config=lora_config,
         callbacks=[Callback(flush_steps=1)],
+        data_collator=collator
     )
     
     print("Starting LoRA training...")
