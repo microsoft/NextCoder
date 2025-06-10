@@ -116,13 +116,11 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 ## Citation
 
 ```bibtex
-@misc{aggarwal2025robustlearningdiversecode,
-      title={Robust Learning of Diverse Code Edits}, 
-      author={Tushar Aggarwal and Swayam Singh and Abhijeet Awasthi and Aditya Kanade and Nagarajan Natarajan},
-      year={2025},
-      eprint={2503.03656},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE},
-      url={https://arxiv.org/abs/2503.03656}, 
+@inproceedings{aggarwal2025nextcoder,
+author = {Aggarwal, Tushar and Singh, Swayam and Awasthi, Abhijeet and Kanade, Aditya and Natarajan, Nagarajan},
+title = {NextCoder: Robust Adaptation of Code LMs to Diverse Code Edits},
+booktitle = {International Conference on Machine Learning},
+year = {2025},
+url = {https://www.microsoft.com/en-us/research/publication/nextcoder-robust-adaptation-of-code-lms-to-diverse-code-edits/},
 }
 ```
