@@ -65,6 +65,8 @@ def parse_args():
     parser.add_argument("--debug", type=bool, default=False)
     parser.add_argument("--packing", type=bool, default=True,
                       help="Whether to use packing for training")
+    parser.add_argument("--is_conversational_training", type=bool, action='store_true',
+                      help="Whether to use conversational training format")
     
     args, _ = parser.parse_known_args()
     return args
@@ -108,7 +110,6 @@ class Callback(TrainerCallback):
         self.flush_steps = flush_steps
 
     def on_step_end(self, args, state, control, model, processing_class , **kwargs):
-        # import sys; sys.exit(0)
         if state.global_step % self.flush_steps == 0:
             get_accelerator().empty_cache()
             if dist.is_initialized():
@@ -172,8 +173,10 @@ def main():
     if last_checkpoint:
         print(f'Resuming from checkpoint: {last_checkpoint}')
 
-    # response_template = "#RESPONSE\n"
-    # collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
+    collator = None
+    if args.is_conversational_training:
+      response_template = "#RESPONSE\n"
+      collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
 
     # Initialize trainer
     trainer = SFTTrainer(
@@ -182,7 +185,7 @@ def main():
         train_dataset=dataset,
         args=training_config,
         callbacks=[Callback(flush_steps=1)],
-        # data_collator=collator,
+        data_collator=collator,
     )
     
     # Start training

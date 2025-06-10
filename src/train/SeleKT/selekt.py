@@ -300,8 +300,10 @@ def train(args):
         print(f'Resuming from checkpoint: {last_checkpoint}')
 
 
-    # response_template = "#RESPONSE\n"
-    # collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
+    collator = None
+    if args.is_conversational_training:
+      response_template = "#RESPONSE\n"
+      collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
 
     callback = Callback(base_model_path=args.base_model_path, flush_steps=1, alpha=args.alpha)
     trainer = SFTTrainer(
@@ -310,7 +312,7 @@ def train(args):
         train_dataset=dataset,
         args=training_config,
         callbacks=[callback],
-        # data_collator=collator,
+        data_collator=collator,
     )
     callback.set_trainer(trainer)
     print(f"Starting training for epoch {args.num_train_epochs}")
