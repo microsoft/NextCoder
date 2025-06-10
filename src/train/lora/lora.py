@@ -17,6 +17,10 @@ import argparse
 from typing import Optional
 from deepspeed.accelerator import get_accelerator
 from liger_kernel.transformers import AutoLigerKernelForCausalLM
+from peft import LoraConfig
+
+
+
 
 
 def parse_args():
@@ -62,9 +66,10 @@ def parse_args():
                       help="Whether to use bf16 mixed precision training")
     parser.add_argument("--run_name", type=str, default=None)
     parser.add_argument("--use_liger", type=bool, default=False)
-    parser.add_argument("--debug", type=bool, default=False)
     parser.add_argument("--packing", type=bool, default=True,
                       help="Whether to use packing for training")
+    parser.add_argument("--is_conversational_training", action='store_true',
+                      help="Whether to use conversational training format")
     
     args, _ = parser.parse_known_args()
     return args
@@ -101,6 +106,7 @@ def setup_training_data(args, local_rank: int, tokenizer) -> Optional[torch.util
     """Setup and preprocess the training data"""
     print(f"Loading dataset from {args.train_data_path}")
     dataset = load_from_disk(args.train_data_path)
+    
     return dataset
 
 class Callback(TrainerCallback):
@@ -108,7 +114,6 @@ class Callback(TrainerCallback):
         self.flush_steps = flush_steps
 
     def on_step_end(self, args, state, control, model, processing_class , **kwargs):
-        # import sys; sys.exit(0)
         if state.global_step % self.flush_steps == 0:
             get_accelerator().empty_cache()
             if dist.is_initialized():
@@ -131,7 +136,6 @@ def main():
 
     # Setup training configuration
     training_config = SFTConfig(
-        dataset_text_field="messages",
         max_seq_length=args.model_max_length,
         packing=True,
         per_device_train_batch_size=args.per_device_train_batch_size,
@@ -146,52 +150,53 @@ def main():
         save_steps=args.save_steps,
         save_total_limit=args.save_total_limit,
         output_dir=args.output_dir,
-        report_to=args.report_to,
+        report_to="none",
         gradient_checkpointing=args.gradient_checkpointing,
-        gradient_checkpointing_kwargs={"use_reentrant": False},
+        gradient_checkpointing_kwargs={"use_reentrant": True},
         deepspeed=args.deepspeed,
         dataset_num_proc=80,
         run_name=args.run_name,
         use_liger=args.use_liger,
-        # include_num_input_tokens_seen=True, # keep it False, raised a PR to hugingface that fixes it
         )
-    # Setup distributed training environment
+    
+    lora_config = LoraConfig(
+        r=64,
+        # target_modules= ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+        target_modules="all-linear",
+        lora_alpha=16,
+        lora_dropout=0.05,
+        lora_bias=False,
+    )
+
+
     rank = int(os.environ.get("RANK", "0"))
     local_rank = int(os.environ.get("LOCAL_RANK", "0"))
     world_size = int(os.environ.get("WORLD_SIZE", "1"))
 
-    # Load model and tokenizer
     model, tokenizer = load_model_and_tokenizer(args)
     
-    # Load dataset
     dataset = setup_training_data(args, local_rank, tokenizer)
 
+    collator = None
+    if args.is_conversational_training:
+      response_template = "#RESPONSE\n"
+      collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
 
-    # Resume from checkpoint if exists
-    last_checkpoint = get_last_checkpoint(args.output_dir)
-    if last_checkpoint:
-        print(f'Resuming from checkpoint: {last_checkpoint}')
-
-    # response_template = "#RESPONSE\n"
-    # collator = DataCollatorForCompletionOnlyLM(response_template=response_template, tokenizer=tokenizer)
-
-    # Initialize trainer
     trainer = SFTTrainer(
         model=model,
         processing_class=tokenizer,
         train_dataset=dataset,
         args=training_config,
+        peft_config=lora_config,
         callbacks=[Callback(flush_steps=1)],
-        # data_collator=collator,
+        data_collator=collator
     )
     
-    # Start training
-    print("Starting training...")
-    trainer.train(resume_from_checkpoint=last_checkpoint)
+    print("Starting LoRA training...")
+    trainer.train()
     
     print("Training completed, saving final model")
     
-    # Save final model
     trainer.save_model()
     if trainer.is_world_process_zero():
         tokenizer.save_pretrained(args.output_dir)

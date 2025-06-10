@@ -1,2 +1,5 @@
 *.ipynb
 *.parquet
+dataset/
+models/
+local_util/
