@@ -112,3 +112,17 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+## Citation
+
+```bibtex
+@misc{aggarwal2025robustlearningdiversecode,
+      title={Robust Learning of Diverse Code Edits}, 
+      author={Tushar Aggarwal and Swayam Singh and Abhijeet Awasthi and Aditya Kanade and Nagarajan Natarajan},
+      year={2025},
+      eprint={2503.03656},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2503.03656}, 
+}
+```
