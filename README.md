@@ -1,12 +1,12 @@
 # NextCoder
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/collections/microsoft/nextcoder-6815ee6bfcf4e42f20d45028">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://arxiv.org/abs/2503.03656">Arxiv</a> 
+        🤗 <a href="https://huggingface.co/collections/microsoft/nextcoder-6815ee6bfcf4e42f20d45028">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://www.microsoft.com/en-us/research/publication/nextcoder-robust-adaptation-of-code-lms-to-diverse-code-edits">Paper</a> 
 </p>
 
 ## Introduction
 This repository hosts the official code and data artifact for the paper [NextCoder: Robust Learning of Diverse Code Edits
-](https://arxiv.org/abs/2503.03656)
+](https://www.microsoft.com/en-us/research/publication/nextcoder-robust-adaptation-of-code-lms-to-diverse-code-edits).
 
 The work is the development of code-editing LLMs, synthetic data generation pipeline and a novel finetuning methodology called **Selective Knowledge Transfer (SeleKT)**.
 
