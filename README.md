@@ -1,7 +1,11 @@
 # NextCoder
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/collections/microsoft/nextcoder-6815ee6bfcf4e42f20d45028">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://www.microsoft.com/en-us/research/publication/nextcoder-robust-adaptation-of-code-lms-to-diverse-code-edits">Paper</a> 
+        Azure AI Foundry: 
+        <a href="https://ai.azure.com/explore/models/microsoft-nextcoder-7b/version/1/registry/HuggingFace">7B</a>,
+        <a href="https://ai.azure.com/explore/models/microsoft-nextcoder-14b/version/1/registry/HuggingFace">14B</a>,
+        <a href="https://ai.azure.com/explore/models/microsoft-nextcoder-32b/version/1/registry/HuggingFace">32B</a> |
+        🤗 <a href="https://huggingface.co/collections/microsoft/nextcoder-6815ee6bfcf4e42f20d45028">Hugging Face</a>&nbsp&nbsp | &nbsp📑 <a href="https://www.microsoft.com/en-us/research/publication/nextcoder-robust-adaptation-of-code-lms-to-diverse-code-edits">Paper</a> 
 </p>
 
 ## Introduction
